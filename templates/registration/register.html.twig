@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	{% for flashError in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+	{% endfor %}
+
+
+	<button type="submit" class="btn">Register</button>
+
+
+	<section id="wrapper">
+		<div class="login-register" style="background-image:url(./assets/images/background/login-register.jpg);">
+			<div class="login-box card">
+				<div class="card-body">
+					{{ form_start(registrationForm) }}
+					<form class="form-horizontal form-material">
+						<h3 class="box-title m-b-20">Sign Up</h3>
+						<div class="form-group ">
+							<div class="col-xs-12">
+								{{ form_row(registrationForm.email) }}
+							</div>
+						</div>
+						<div class="form-group ">
+							<div class="col-xs-12">
+								{{ form_row(registrationForm.password.first) }}
+							</div>
+						</div>
+						<div class="form-group ">
+							<div class="col-xs-12">
+								{{ form_row(registrationForm.password.second) }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="checkbox checkbox-primary pull-left p-t-0">
+								{{ form_row(registrationForm.agreeTerms) }}
+								<input id="checkbox-signup" type="checkbox">
+								<label for="checkbox-signup">
+									Remember me
+								</label>
+							</div>
+						</div>
+						<div class="form-group text-center m-t-20">
+							<div class="col-xs-12">
+								<button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Sign Up</button>
+							</div>
+						</div>
+						<div class="form-group m-b-0">
+							<div class="col-sm-12 text-center">
+								<p>Avez ous dejà un compte ?
+									<a href="{{path('app_login')}}" class="text-info m-l-5">
+										<b>Sign
+																																																																																																																																																																																																			                                            In</b>
+									</a>
+								</p>
+							</div>
+						</div>
+						{{ form_end(registrationForm) }}
+
+					</div>
+				</div>
+			</div>
+
+		</section>
+	{% endblock %}
