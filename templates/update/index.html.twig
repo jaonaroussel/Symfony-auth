@@ -1,31 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}Update Password
 {% endblock %}
 
 {% block body %}
 	{% for flashError in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 	{% endfor %}
+
+
 	<section id="wrapper">
 		<div class="login-register" style="background-image:url(./assets/images/background/login-register.jpg);">
 			<div class="login-box card">
 				<div class="card-body">
-					{{ form_start(registrationForm) }}
-					<h3 class="box-title m-b-20">Sign Up</h3>
+					{{ form_start(updateForm) }}
+					{% if app.user %}
+						<div class="mb-3">
+							Vous ête connecté
+							{{ app.user.username }},
+							<a href="{{ path('app_logout') }}">Déconnexion</a>
+						</div>
+					{% endif %}
+					<h3 class="box-title m-b-20">Update Password</h3>
 					<div class="form-group ">
 						<div class="col-xs-12">
-							{{ form_row(registrationForm.email) }}
+							{{ form_row(updateForm.password.first) }}
 						</div>
 					</div>
 					<div class="form-group ">
 						<div class="col-xs-12">
-							{{ form_row(registrationForm.password.first) }}
-						</div>
-					</div>
-					<div class="form-group ">
-						<div class="col-xs-12">
-							{{ form_row(registrationForm.password.second) }}
+							{{ form_row(updateForm.password.second) }}
 						</div>
 					</div>
 					<div class="form-group text-center m-t-20">
@@ -33,16 +37,7 @@
 							<button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Sign Up</button>
 						</div>
 					</div>
-					<div class="form-group m-b-0">
-						<div class="col-sm-12 text-center">
-							<p>Avez ous dejà un compte ?
-								<a href="{{path('app_login')}}" class="text-info m-l-5">
-									<b>Sign in</b>
-								</a>
-							</p>
-						</div>
-					</div>
-					{{ form_end(registrationForm) }}
+					{{ form_end(updateForm) }}
 
 				</div>
 			</div>

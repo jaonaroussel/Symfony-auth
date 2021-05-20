@@ -42,6 +42,11 @@ class User implements UserInterface
      */
     private $registrationToken;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $forgotPasswordToken;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -131,6 +136,18 @@ class User implements UserInterface
     public function setRegistrationToken(?string $registrationToken): self
     {
         $this->registrationToken = $registrationToken;
+
+        return $this;
+    }
+
+    public function getForgotPasswordToken(): ?string
+    {
+        return $this->forgotPasswordToken;
+    }
+
+    public function setForgotPasswordToken(?string $forgotPasswordToken): self
+    {
+        $this->forgotPasswordToken = $forgotPasswordToken;
 
         return $this;
     }
